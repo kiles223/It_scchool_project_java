@@ -19,4 +19,10 @@ public class GreetingController {
         return "Hello";
     }
 
+    @GetMapping("/test")
+    public String test(@RequestParam(name = "name", required = false, defaultValue = "test") String name, Model model) {
+        model.addAttribute("name", name);
+        return "Hello";
+    }
+
 }
