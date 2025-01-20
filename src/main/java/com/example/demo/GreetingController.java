@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.websocket.WebSocketConfig;
+import com.example.demo.websocket.WebSocketServer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +19,6 @@ public class GreetingController {
     @GetMapping("/bum")
     public String bumbumbam(@RequestParam(name = "name", required = false, defaultValue = "World") String name, Model model) {
         model.addAttribute("name", name);
-        return "Hello";
+        return "xindex";
     }
-
-
-
 }
