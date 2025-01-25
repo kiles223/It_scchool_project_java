@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+  const WebSocket = require('ws');
+  const wss = new WebSocket.Server({ port: 8080 });
+
+  wss.on('connection', (ws) => {
+    console.log('Клиент подключился');
+
+    // Отправка данных клиенту
+    ws.send('Привет, клиент!');
+
+    // Получение данных от клиента
+    ws.on('message', (message) => {
+      console.log(`Клиент отправил: ${message}`);
+    });
+
+    // Закрытие соединения
+    ws.on('close', () => {
+      console.log('Клиент отключился');
+    });
+  });
+</script>
+<body>
+
+</body>
+</html>
