@@ -60,6 +60,7 @@ html{
     row-gap: 8px;
 }
 .banner:before{
+    width: 1520px;
     position: absolute;
     top: 0;
     left: 0;
@@ -74,22 +75,8 @@ html{
 .header p{
     letter-spacing: 1.2px;
 }
-h3{
-    display: flex;
-    align-items: center;
-}
-h3:after{
-    content: "";
-    flex: 1;
-    height: 2px;
-    background-color: #E8EAEB;
-    margin-left: 24px;
-}
 .stats{
     display: flex;
-}
-.stats h3{
-    font-size: 42px;
 }
 .stats div{
     display: flex;
