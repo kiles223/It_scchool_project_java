@@ -2,33 +2,106 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <title>Title</title>
+    <title>IT School Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="../static/css/main.css" rel="stylesheet">
+
 </head>
 <body>
-<a class = "button" id = "btn1">кнопка 1</a>
-<div id="container"> </div>
-<script>
-    $(document).ready(function(){
-        $("#btn1").click(function(){
-            $(this).load("time.html");
-        })
-    });
-  function show(){
-
-    // $.ajax({
-    //   url: "time.html",
-    //   chache: false,
-    //   success: function(html){
-    //     $("#container").html(html);
-    //   }
-    // });
-  }
-  // $(document).ready(function(){
-  //   show();
-  //   setInterval('show()',1000);
-  // });
-</script>
+<div class="banner">
+    <img src="/css/media/banner.jpg" alt="Beautiful House"/>
+    <div class="text">
+        <div class="header">
+            <h1 class="lato-black">
+                Забронируйте свой лучший отдых
+            </h1>
+            <h3 class="lato-bold">
+                В Гостевом комплексе "Эко-Деревня"
+            </h3>
+            <p class="lato-regular">
+                Гостевой комплекс «Эко-деревня» — это база отдыха, расположенная в живописном месте,
+                 недалеко от горнолыжного курорта «Банное». Гостям предлагается проживание в уютных домиках,
+                 каждый из которых имеет веранду с мангальной зоной и шезлонгами.
+            </p>
+        </div>
+        <div class="stats">
+            <div class="houses">
+                <p class="lato-bold" style="font-size: 42px;">
+                    20
+                </p>
+                <p class="lato-bold">
+                    Уникальных домов
+                </p>
+            </div>
+            <hr>
+            <div class="customers">
+                <p class="lato-bold" style="font-size: 42px;">
+                    500+
+                </p>
+                <p class="lato-bold">
+                    Гостей нас посетило
+                </p>
+            </div>
+            <hr>
+            <div class="to-base">
+                <h3 class="lato-bold" style="font-size: 42px;">
+                    1 КМ
+                </h3>
+                <p class="lato-bold">
+                    До Горнолыжного Центра
+                </p>
+            </div>
+        </div>
+        <a href="https://guns.lol/vovlik" class="lato-bold order-button">
+            ЗАБРОНИРОВАТЬ
+            <img src="/css/media/check-circle.svg" alt="">
+        </a>
+    </div>
+</div>
+<div class="main-section">
+    <div class="main-info">
+        <div class="title">
+            <h1 class="lato-black">
+                Дом №14 "Звездный"
+            </h1>
+            <div class="price">
+                <h2 class="lato-bold">
+                    Цена за сутки:
+                </h2>
+                <p class="lato-bold">
+                    2500.00 &#8381
+                </p>
+            </div>
+        </div>
+        <div class="description">
+            <h2 class="lato-bold">
+                Описание
+            </h2>
+            <p class="description-text">
+                Коттедж имеет просторные апартаменты. Вы можете замечательно разместиться здесь большой
+                компанией, однако, комфортнее всего и удобнее будет группе до 6 человек. В доме две просторные спальни
+                и гостевые диваны, так что вы вряд ли будете чувствовать себя в чем-либо стесненным, даже если к вам
+                приедут гости
+            </p>
+        </div>
+        <div class="photo-section">
+            <h2 class="lato-bold">
+                Фотографии
+            </h2>
+            <div class="apartment-photos" style="flex-direction: row">
+                <img src="/css/media/apartment-photos/number14/Photo1.jpg" alt="">
+                <img src="/css/media/apartment-photos/number14/Photo2.jpg" alt="">
+                <img src="/css/media/apartment-photos/number14/Photo3.jpg" alt="">
+            </div>
+        </div>
+        <div class="calendar"></div>
+        <div class="summary"></div>
+    </div>
+<!--    затычка-->
+    <img class="map" src="/css/media/Map.jpg" alt="">
+</div>
 
 </body>
 </html>
