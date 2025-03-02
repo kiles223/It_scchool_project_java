@@ -1,3 +1,4 @@
+<div class = "main-section" th:fragment="house-info(house)">
 <div th:object="${house}" class="main-info">
     <div class="title">
         <h1 th:text="*{name}" class="lato-black">
@@ -40,3 +41,4 @@
     <div class="summary"></div>
 </div>
     <img class="map" src="/media/Map.jpg" alt="">
+</div>
