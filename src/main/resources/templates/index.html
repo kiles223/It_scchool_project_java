@@ -61,7 +61,8 @@
         </a>
     </div>
 </div>
-<div class = "main-section" id="main-section" th:replace="../static/html/pattern.html :: house-info(house=${house})">
+<!--th:replace="../static/html/pattern.html :: house-info(house=${house})"-->
+<div class = "main-section" id="main-section" >
     <div class="instruction">
         <h1 class="lato-bold"> Как использовать интерактивный макет</h1>
         <p class="lato-regular">
@@ -77,17 +78,31 @@
 
 </body>
 <script th:inline="javascript">
+    function change(data){
+        $.ajax({
+            url: '/pattern',
+            data: {
+                house: data
+            },
+            success: function(result){
+                console.log(result);
+
+                $("#main-section").html(result)
+            }
+        });
+
+    }
     $(document).ready(function (){
         $("#btn").click(function(){
-            $("#main-section").load("../static/html/pattern.html");
+            change("test");
         })
     });
     const socket =  new WebSocket('ws://localhost:8080/ws');
     socket.onmessage = function (event){
-        var uid = event.data
-        $("#main-section").load("../static/html/pattern.html")
+        change(event.data);
 
     }
+
 
 
 </script>

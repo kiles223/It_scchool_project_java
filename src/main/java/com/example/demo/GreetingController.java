@@ -27,5 +27,12 @@ public class GreetingController {
         model.addAttribute("uid", name);
         return "ESP";
     }
+    @GetMapping("/pattern")
+    public String pattern(@RequestParam(name = "house") String house, Model model) {
+        House test = new House("дом №13 «тестовый» ","1300.00",house);
+        model.addAttribute("house", test);
+        return "../static/html/pattern.html";
+
+    }
 
 }
