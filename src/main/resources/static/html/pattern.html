@@ -1,0 +1,42 @@
+<div th:object="${house}" class="main-info">
+    <div class="title">
+        <h1 th:text="*{name}" class="lato-black">
+            Дом №14 "Звездный"
+        </h1>
+        <div class="price">
+            <h2 class="lato-bold">
+                Цена за сутки:
+            </h2>
+            <p th:text="*{price}" class="lato-bold">
+                2500.00
+            </p>
+            <p class="lato-bold" style="font-weight: 500; margin-left: -16px">
+                &#8381
+            </p>
+        </div>
+    </div>
+    <div class="description">
+        <h2 class="lato-bold">
+            Описание
+        </h2>
+        <p th:text="*{description}" class="description-text">
+            Коттедж имеет просторные апартаменты. Вы можете замечательно разместиться здесь большой
+            компанией, однако, комфортнее всего и удобнее будет группе до 6 человек. В доме две просторные спальни
+            и гостевые диваны, так что вы вряд ли будете чувствовать себя в чем-либо стесненным, даже если к вам
+            приедут гости
+        </p>
+    </div>
+    <div class="photo-section">
+        <h2 class="lato-bold">
+            Фотографии
+        </h2>
+        <div class="apartment-photos" style="flex-direction: row">
+            <img src="/media/apartment-photos/number14/Photo1.jpg" alt="">
+            <img src="/media/apartment-photos/number14/Photo2.jpg" alt="">
+            <img src="/media/apartment-photos/number14/Photo3.jpg" alt="">
+        </div>
+    </div>
+    <div class="calendar"></div>
+    <div class="summary"></div>
+</div>
+    <img class="map" src="/media/Map.jpg" alt="">

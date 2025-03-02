@@ -122,7 +122,20 @@ hr{
 
 
 
-
+.instruction{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: -32px;
+}
+.instruction h1{
+    font-size: 32px;
+    padding-bottom: 8px;
+}
+.instruction p{
+    font-size: 24px;
+    line-height: 1.4;
+}
 .main-section{
     display: flex;
     width: 1520px;

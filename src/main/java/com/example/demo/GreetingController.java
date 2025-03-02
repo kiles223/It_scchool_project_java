@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.model.House;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,11 @@ public class GreetingController {
         model.addAttribute("name", name);
         return "greeting";
     }
-    @GetMapping("/bum")
-    public String bumbumbam() {
+    @GetMapping("/")
+    public String bumbumbam(Model model) {
+        House test = new House("дом №13 «тестовый» ","1300.00","поздравляю");
+        model.addAttribute("house", test);
+
         return "index";
     }
 
