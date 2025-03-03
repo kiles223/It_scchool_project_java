@@ -63,7 +63,7 @@
 </div>
 <!--th:replace="../static/html/pattern.html :: house-info(house=${house})"-->
 <div class = "main-section" id="main-section" >
-    <div class="instruction">
+    <div class="instruction" id = "instruction">
         <h1 class="lato-bold"> Как использовать интерактивный макет</h1>
         <p class="lato-regular">
             1. Возьмите с макета модельку заинтересовавшего вас дома<br>
@@ -72,7 +72,7 @@
         </p>
     </div>
 <!--    затычка карты       -->
-    <img class="map" src="../static/media/default-map.jpg" alt="">
+    <img class="map" id="map" src="../static/media/default-map.jpg" alt="">
 </div>
 <a id="btn" >click pls</a>
 
@@ -85,9 +85,11 @@
                 house: data
             },
             success: function(result){
-                console.log(result);
+                $("#main-section").fadeOut(500,function () {
+                    $("#main-section").html(result)
+                    $("#main-section").fadeIn(500);
+                });
 
-                $("#main-section").html(result)
             }
         });
 
@@ -95,6 +97,7 @@
     $(document).ready(function (){
         $("#btn").click(function(){
             change("test");
+            // $("#map").animate({width: 'toggle'}, "slow");
         })
     });
     const socket =  new WebSocket('ws://localhost:8080/ws');
