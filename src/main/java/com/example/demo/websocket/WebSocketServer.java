@@ -19,7 +19,11 @@ import java.util.List;
 
 public class WebSocketServer extends TextWebSocketHandler {
 
-    private List<WebSocketSession> sessions = new ArrayList<>();
+    public static List<WebSocketSession> sessions = new ArrayList<>();
+
+    public static List<WebSocketSession> getSessions() {
+        return sessions;
+    }
 
     @OnOpen
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
