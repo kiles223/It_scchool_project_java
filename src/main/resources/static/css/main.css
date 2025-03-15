@@ -5,6 +5,7 @@ html{
     background-color: #E8EAEB;
     margin: 0;
     padding: 0;
+    min-height: 1552px;
 }
 .lato-black{
     font-size: 42px;
@@ -139,6 +140,7 @@ hr{
 .main-section{
     display: flex;
     width: 1520px;
+    height: 912px;
     justify-content: space-between;
     column-gap: 40px;
 }
