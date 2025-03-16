@@ -110,13 +110,32 @@
 .default-map{
     border-radius: 2rem;
 }
-.instruction-list li{
+.instruction-list *{
     line-height: 1.2;
+    background-color: var(--light-color);
 }
-body {
+.price-display *{
+    font-weight: 600 !important;
+}
+.apartment-photo-div {
+    aspect-ratio: 8/5 !important;
+    border-radius: 1rem;
+    position: relative;
+    overflow: clip;
+}
+.apartment-photo {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    object-fit:cover;
+}
+html {
     font-family: var(--font-family-base), sans-serif !important;
     color: var(--text-color);
-    background-color: var(--light-color);
+    background-color: var(--light-color) !important;
 }
 
 
