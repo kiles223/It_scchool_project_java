@@ -31,4 +31,9 @@ public class GreetingController {
 
     }
 
+    @GetMapping("/test")
+    public String test(Model model) {
+        return "bootstrap-test";
+    }
+
 }

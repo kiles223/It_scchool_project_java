@@ -1,0 +1,193 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../fonts/Lato-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --light-color: #E8EAEB;
+    --text-color: #252422;
+    --book-btn-color: #F56B3D;
+    --font-family-base: 'Lato', sans-serif;
+}
+
+
+.custom-gradient{
+    border-radius: 2rem;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(270deg, rgba(6, 6, 6, 0), rgba(6, 6, 6, 0.75) 100%);
+}
+
+.banner{
+    background-image: url('../media/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 37.5rem;
+    border-radius: 2rem;
+}
+.banner-info{
+    gap: 40px;
+    color: var(--light-color);
+    padding-left: 4rem;
+}
+.heading1{
+    font-weight: 700 !important;
+    text-transform: uppercase;
+}
+.banner-description{
+    display: grid;
+    row-gap: 0.5rem;
+}
+.banner-description *{
+    margin-bottom: 0 !important;
+}
+.statistics{
+    display: flex;
+    flex-direction: column;
+}
+.statistics *{
+    margin-bottom: 0 !important;
+    font-weight: 600 !important;
+}
+.statistics .vr{
+    opacity: 100%;
+    background: var(--light-color);
+}
+.order-button {
+    font-weight: 600;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 1.2px;
+    line-height: 1em;
+    box-shadow: 0 0 32px 0 rgba(0,79,152,0.5);
+    background-color:#004f98;
+    border-radius:3em;
+    width: fit-content;
+    display:flex;
+    cursor:pointer;
+    color:var(--light-color);
+    /*font-size:1rem;*/
+    padding:1em 1.5em;
+    text-decoration:none;
+}
+.order-button img{
+    margin-left: 0.5rem;
+    width: 1.1rem;
+    aspect-ratio: 1;
+    filter: invert(97%) sepia(8%) saturate(43%) hue-rotate(155deg) brightness(97%) contrast(92%);
+}
+.order-button:hover {
+    box-shadow: 0 0 2rem 0 rgba(0,79,152,0.75);
+    background-color:#0059ac;
+}
+.default-map{
+    border-radius: 2rem;
+}
+.instruction-list li{
+    line-height: 1.2;
+}
+body {
+    font-family: var(--font-family-base), sans-serif !important;
+    color: var(--text-color);
+    background-color: var(--light-color);
+}
+
+
+/*
+.banner-section{
+    max-width: calc(var(--banner-width) + var(--padding)*2);
+}
+
+h1, h2, h3 {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+main{
+    margin-inline: auto;
+    padding-inline: var(--padding);
+}
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+
+
+.banner-section{
+    margin-inline: auto;
+    padding-inline: var(--padding);
+    position: relative;
+    width: clamp(600px,79.17vw,1520px);
+    height: clamp(300px, 55.56vh, 600px);
+}
+
+.banner-section:before{
+    width: clamp(600px,79.17vw,1520px);
+    height: clamp(300px, 55.56vh, 600px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    content: '';
+    border-radius: 32px;
+    background: linear-gradient(270deg, rgba(6, 6, 6, 0), rgba(6, 6, 6, 0.75) 100%);
+    background-blend-mode: hard-light;
+}
+
+.banner-background-image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: clamp(600px,79.17vw,1520px);
+    height: clamp(300px, 55.56vh, 600px);
+    border-radius: 32px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.banner-body{
+    width: 45%;
+    position: absolute;
+    top: 0;
+    padding-left: min(64px, 4.21%);
+    z-index: 2;
+    color: var(--light-color);
+}
+*/
