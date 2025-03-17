@@ -1,6 +1,6 @@
 <div class="col-md-12 col-lg-6 align-self-center d-flex flex-column gap-4" th:object="${house}">
     <div class="title">
-        <p th:text="*{name}" class="h1 heading1 mb-0"> Дом №14 "Звездный" </p>
+        <p th:text="*{houseName}" class="h1 heading1 mb-0"> Дом №14 "Звездный" </p>
         <div class="row price-display align-items-center">
             <p class="col-auto fs-3 d-inline mb-0">ЦЕНА ЗА СУТКИ:</p>
             <p class="col-auto fs-3 d-inline mb-0" th:text="*{price}"></p>
@@ -10,7 +10,7 @@
     <div>
         <p class="h3" >ОПИСАНИЕ</p>
 <!--        th:text="*{description}"-->
-        <p class="h6 fw-normal mb-0" >
+        <p class="h6 fw-normal mb-0" th:text="*{description}" >
             Коттедж имеет просторные апартаменты. Вы можете замечательно разместиться здесь большой
             компанией, однако, комфортнее всего и удобнее будет группе до 6 человек. В доме две просторные спальни
             и гостевые диваны, так что вы вряд ли будете чувствовать себя в чем-либо стесненным, даже если к вам

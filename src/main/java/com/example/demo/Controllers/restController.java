@@ -16,8 +16,7 @@ public class restController {
     List<WebSocketSession> sessions = WebSocketServer.getSessions();
 
     @GetMapping("/esp")
-    public void esp(@RequestParam(name = "uid", required = false, defaultValue = "Error") String name, Model model) {
-        model.addAttribute("uid", name);
+    public void esp(@RequestParam(name = "uid", required = false, defaultValue = "Error") String name) {
         for (WebSocketSession session1 : sessions) {
             try {
                 session1.sendMessage(new TextMessage(name));

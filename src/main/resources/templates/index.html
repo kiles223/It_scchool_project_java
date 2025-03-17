@@ -79,7 +79,7 @@
         $.ajax({
             url: '/pattern',
             data: {
-                house: data
+                id: data
             },
             success: function(result){
                 $("#main-section").fadeOut(500,function () {
@@ -93,7 +93,7 @@
     }
     $(document).ready(function (){
         $("#btn").click(function(){
-            change("test");
+            change("1");
             // $("#map").animate({width: 'toggle'}, "slow");
         })
     });
