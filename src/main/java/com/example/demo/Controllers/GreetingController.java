@@ -32,10 +32,4 @@ public class GreetingController {
         return "../static/html/pattern.html";
 
     }
-
-    @GetMapping("/test")
-    public String test(Model model) {
-        return "bootstrap-test";
-    }
-
 }

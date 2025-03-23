@@ -1,9 +1,12 @@
 package com.example.demo.model.dto;
 
+import com.example.demo.model.entities.PhotoPaths;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,4 +17,6 @@ public class HouseDto {
     private String houseName;
     private String price;
     private String description;
+    private List<PhotoPaths> photosPaths;
+    private String mapPath;
 }

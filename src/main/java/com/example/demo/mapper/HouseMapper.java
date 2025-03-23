@@ -9,7 +9,9 @@ public class HouseMapper {
                 house.getId(),
                 house.getHouseName(),
                 house.getPrice(),
-                house.getDescription()
+                house.getDescription(),
+                house.getPhotosPaths(),
+                house.getMapPath()
         );
     }
 
@@ -18,7 +20,9 @@ public class HouseMapper {
                 houseDto.getId(),
                 houseDto.getHouseName(),
                 houseDto.getPrice(),
-                houseDto.getDescription()
+                houseDto.getDescription(),
+                houseDto.getPhotosPaths(),
+                houseDto.getMapPath()
         );
     }
 }

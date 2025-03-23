@@ -19,19 +19,13 @@
     </div>
     <div>
         <p class="h3">ФОТОГРАФИИ</p>
-        <div class="row g-0 d-flex flex-row gap-3">
-            <div class="col apartment-photo-div">
-                <img class="apartment-photo" src="/media/apartment-photos/number14/Photo1.jpg" alt="">
-            </div>
-            <div class="col apartment-photo-div" >
-                <img class="apartment-photo" src="/media/apartment-photos/number14/Photo2.jpg" alt="">
-            </div>
-            <div class="col apartment-photo-div">
-                <img class="apartment-photo" src="/media/apartment-photos/number14/Photo3.jpg" alt="">
+        <div class="row g-0 d-flex flex-row gap-4">
+            <div class="col apartment-photo-div" th:each="path: *{photosPaths}" style="max-width: 40%">
+                <img class="apartment-photo" th:src="@{${path.photoPath}}" alt="">
             </div>
         </div>
     </div>
 </div>
-<div class="col-md-12 col-lg-6">
-    <img class="img-fluid w-100 default-map align-self-center" src="/media/Map.jpg" alt="">
+<div class="col-md-12 col-lg-6" >
+    <img class="img-fluid w-100 default-map align-self-center" th:src="@{${house.mapPath}}" alt="">
 </div>

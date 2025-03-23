@@ -36,6 +36,8 @@ public class HouseServiceImpl implements HouseService {
         house.setHouseName(houseDto.getHouseName());
         house.setDescription(houseDto.getDescription());
         house.setPrice(houseDto.getPrice());
+        house.setPhotosPaths(houseDto.getPhotosPaths());
+        house.setMapPath(houseDto.getMapPath());
         House updatedHouseObj = houseRepository.save(house);
         return HouseMapper.mapToHouseDto(updatedHouseObj);
     }

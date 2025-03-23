@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.awt.*;
 import java.util.List;
 
 @Getter
@@ -23,8 +24,10 @@ public class House {
     private String price;
     @Column(name = "description")
     private String description;
-//    @Column
-//    List<String> photosPaths;
-
+    @OneToMany
+    @JoinColumn(name = "house_id")
+    private List<PhotoPaths> photosPaths;
+    @Column(name = "map_path")
+    private String mapPath;
 }
 
