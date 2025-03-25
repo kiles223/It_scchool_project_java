@@ -140,76 +140,57 @@ html {
     color: var(--text-color);
     background-color: var(--light-color) !important;
 }
-
-
-/*
-.banner-section{
-    max-width: calc(var(--banner-width) + var(--padding)*2);
+.dates, .days{
+    grid-template-columns: repeat(7, 1fr);
 }
-
-h1, h2, h3 {
-    font-weight: 900;
-    text-transform: uppercase;
+.dates button{
+    aspect-ratio: 1;
+    background: transparent;
+    border: none;
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 100%;
 }
-
-main{
-    margin-inline: auto;
-    padding-inline: var(--padding);
+.daterangepicker-1{
+    border-radius: 1rem;
 }
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
+.daterangepicker-1 *{
+    margin-bottom: 0.25rem;
 }
-
-
-
-.banner-section{
-    margin-inline: auto;
-    padding-inline: var(--padding);
-    position: relative;
-    width: clamp(600px,79.17vw,1520px);
-    height: clamp(300px, 55.56vh, 600px);
+.selected{
+    background: #F56B3D !important;
+    color: white !important;
 }
-
-.banner-section:before{
-    width: clamp(600px,79.17vw,1520px);
-    height: clamp(300px, 55.56vh, 600px);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    content: '';
-    border-radius: 32px;
-    background: linear-gradient(270deg, rgba(6, 6, 6, 0), rgba(6, 6, 6, 0.75) 100%);
-    background-blend-mode: hard-light;
+.selected-start{
+    color: white;
+    background: #F56B3D !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 }
-
-.banner-background-image{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    width: clamp(600px,79.17vw,1520px);
-    height: clamp(300px, 55.56vh, 600px);
-    border-radius: 32px;
-    object-fit: cover;
-    object-position: center;
+.selected-end{
+    color: white;
+    background: #F56B3D !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 }
-
-.banner-body{
-    width: 45%;
-    position: absolute;
-    top: 0;
-    padding-left: min(64px, 4.21%);
-    z-index: 2;
-    color: var(--light-color);
+.between-selected{
+    border-radius: 0 !important;
+    background: #F56B3D !important;
+    color: white !important;
 }
-*/
+.book-button{
+    font-weight: 600;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 1.2px;
+    line-height: 1em;
+    box-shadow: 0 0 32px 0 rgba(0,79,152,0.5);
+    background-color:#004f98;
+    border-radius:3em;
+    width: fit-content;
+    display:flex;
+    cursor:pointer;
+    color:var(--light-color);
+    padding:1em 1.5em;
+    text-decoration:none;
+}

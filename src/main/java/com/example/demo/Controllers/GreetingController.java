@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Repository
 @Controller
 public class GreetingController {
     private final HouseService houseService;
@@ -30,6 +29,5 @@ public class GreetingController {
         HouseDto houseDto = houseService.getHouseById(houseId);
         model.addAttribute("house", houseDto);
         return "../static/html/pattern.html";
-
     }
 }

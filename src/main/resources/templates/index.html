@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-        <div class="row g-5" id="main-section">
+        <div class="row g-5" id="main-section" style="min-height: 58.75rem">
             <div class="col-md-12 col-lg-6 align-self-center">
                 <p class="h4 fw-bold fs-3 text-center">
                     Как использовать интерактивный макет:
@@ -82,7 +82,7 @@
                 id: data
             },
             success: function(result){
-                $("#main-section").fadeOut(500,function () {
+                    $("#main-section").fadeOut(500,function () {
                     $("#main-section").html(result)
                     $("#main-section").fadeIn(500)
                 });
@@ -99,8 +99,8 @@
     const socket =  new WebSocket('ws://localhost:8080/ws');
     socket.onmessage = function (event){
         change(event.data);
-
     }
+
 
 
 

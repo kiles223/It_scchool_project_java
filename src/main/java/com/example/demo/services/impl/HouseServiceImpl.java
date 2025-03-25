@@ -9,6 +9,8 @@ import com.example.demo.services.HouseService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class HouseServiceImpl implements HouseService {
@@ -28,7 +30,9 @@ public class HouseServiceImpl implements HouseService {
                 .orElseThrow(() -> new ResourceNotFoundException("Не найдено домов с id: " + houseId));
         return HouseMapper.mapToHouseDto(house);
     }
-
+//    public List<HouseDto> getAllHouses() {
+//
+//    }
     @Override
     public HouseDto updateHouse(Long houseId, HouseDto houseDto) {
         House house = houseRepository.findById(houseId)
@@ -37,6 +41,7 @@ public class HouseServiceImpl implements HouseService {
         house.setDescription(houseDto.getDescription());
         house.setPrice(houseDto.getPrice());
         house.setPhotosPaths(houseDto.getPhotosPaths());
+        house.setBookDates(houseDto.getBookDates());
         house.setMapPath(houseDto.getMapPath());
         House updatedHouseObj = houseRepository.save(house);
         return HouseMapper.mapToHouseDto(updatedHouseObj);

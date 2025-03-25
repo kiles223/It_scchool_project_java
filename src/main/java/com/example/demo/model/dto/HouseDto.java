@@ -1,5 +1,6 @@
 package com.example.demo.model.dto;
 
+import com.example.demo.model.entities.BookDates;
 import com.example.demo.model.entities.PhotoPaths;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,5 +19,6 @@ public class HouseDto {
     private String price;
     private String description;
     private List<PhotoPaths> photosPaths;
+    private List<BookDates> bookDates;
     private String mapPath;
 }

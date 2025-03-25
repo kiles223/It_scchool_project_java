@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.awt.*;
+import java.awt.print.Book;
 import java.util.List;
 
 @Getter
@@ -27,6 +28,9 @@ public class House {
     @OneToMany
     @JoinColumn(name = "house_id")
     private List<PhotoPaths> photosPaths;
+    @OneToMany
+    @JoinColumn(name = "house_id")
+    private List<BookDates> bookDates;
     @Column(name = "map_path")
     private String mapPath;
 }

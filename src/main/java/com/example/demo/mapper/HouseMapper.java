@@ -11,6 +11,7 @@ public class HouseMapper {
                 house.getPrice(),
                 house.getDescription(),
                 house.getPhotosPaths(),
+                house.getBookDates(),
                 house.getMapPath()
         );
     }
@@ -22,6 +23,7 @@ public class HouseMapper {
                 houseDto.getPrice(),
                 houseDto.getDescription(),
                 houseDto.getPhotosPaths(),
+                houseDto.getBookDates(),
                 houseDto.getMapPath()
         );
     }

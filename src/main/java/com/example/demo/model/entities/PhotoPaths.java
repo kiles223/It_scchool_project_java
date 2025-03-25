@@ -15,9 +15,9 @@ import lombok.Setter;
 public class PhotoPaths {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(nullable = false, name = "house_id")
-    private long houseId;
+    private Long houseId;
     @Column(name = "photo_path")
     private String photoPath;
 }

@@ -9,13 +9,7 @@
     </div>
     <div>
         <p class="h3" >ОПИСАНИЕ</p>
-<!--        th:text="*{description}"-->
-        <p class="h6 fw-normal mb-0" th:text="*{description}" >
-            Коттедж имеет просторные апартаменты. Вы можете замечательно разместиться здесь большой
-            компанией, однако, комфортнее всего и удобнее будет группе до 6 человек. В доме две просторные спальни
-            и гостевые диваны, так что вы вряд ли будете чувствовать себя в чем-либо стесненным, даже если к вам
-            приедут гости
-        </p>
+        <p class="h6 fw-normal mb-0" th:text="*{description}" ></p>
     </div>
     <div>
         <p class="h3">ФОТОГРАФИИ</p>
@@ -25,7 +19,114 @@
             </div>
         </div>
     </div>
+    <div>
+        <p class="h3">ДАТЫ БРОНИРОВАНИЯ</p>
+        <div class="daterangepicker-container d-flex flex-row gap-3">
+            <div class="daterangepicker-1 col-6 bg-white shadow p-3">
+                <p class="h5 text-center"> January 2025</p>
+                <div class="days d-grid fw-bold fs-5 pb-2 text-center gap-2">
+                    <span>M</span>
+                    <span>T</span>
+                    <span>W</span>
+                    <span>T</span>
+                    <span>F</span>
+                    <span style="color: #FF3B30">S</span>
+                    <span style="color: #FF3B30">S</span>
+                </div>
+                <hr class="m-2">
+                <div class="dates d-grid" id="datepickergrid">
+
+                </div>
+            </div>
+            <div class="daterangepicker-2 col-6">
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center h3 d-flex">
+        <p class="col-auto fs-3 d-inline mb-0">ИТОГО ЗА <span>#</span> ДНЕЙ</p>
+        <!--какая то логика-->
+        <p class="col-auto fs-3 d-inline mb-0">305798</p>
+        <p class="col-auto fs-3 d-inline p-0 mb-0">&#8381</p>
+        <a href="" class="book-button col-auto fs-5 align-self-end">
+            ЗАБРОНИРОВАТЬ
+        </a>
+    </div>
 </div>
 <div class="col-md-12 col-lg-6" >
     <img class="img-fluid w-100 default-map align-self-center" th:src="@{${house.mapPath}}" alt="">
 </div>
+<script>
+    document.getElementById("datepickergrid").change
+    for (var i = 1; i <= 30; i++) {
+        let s = document.createElement("button")
+        s.textContent = i;
+
+        document.getElementById("datepickergrid").appendChild(s)
+    }
+    var dot1;
+    var dot2;
+    var count = 0;
+    var calendar = document.getElementById("datepickergrid")
+    calendar.addEventListener("click", function (e){
+        if (e.target.tagName == "BUTTON"){
+            if (count == 0){
+                dotmin = e.target
+                count+=1
+                dotmin.classList.add("selected")
+            }
+            else if(count==1){
+                dotmax = e.target
+                e.target.classList.add("selected")
+                console.log("min:"+dotmin.textContent+"max:"+dotmax.textContent)
+                count+=1
+                var summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+            }
+            else{
+                summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+                var len1 = Math.abs(e.target.textContent - Math.min(dotmin.textContent, dotmax.textContent))
+                var len2 = Math.abs(e.target.textContent - Math.max(dotmin.textContent, dotmax.textContent))
+                if (len1<len2){
+                    dotmin.classList.remove("selected-start")
+                    dotmin.classList.remove("selected")
+                    dotmin = e.target
+                    dotmin.classList.add("selected-start")
+                }
+                else{
+                    dotmax.classList.remove("selected-end")
+                    dotmax.classList.remove("selected")
+                    dotmax = e.target
+                    dotmax.classList.add("selected-end")
+                }
+
+                count = 2
+
+            }
+            if (count == 2){
+                for (var i = 0; i <30; i++){
+                    calendar.children[i].classList.remove("between-selected")
+                    if (dotmin.textContent - 1 < i && i < dotmax.textContent - 1){
+                        console.log(i)
+                        calendar.children[i].classList.add("between-selected")
+                    }
+                }
+                calendar.children[dotmin.textContent-1].classList.remove("selected")
+                calendar.children[dotmin.textContent-1].classList.add(("selected-start"))
+                calendar.children[dotmax.textContent-1].classList.add(("selected-end"))
+            }
+
+            console.log(e.target.textContent)
+            console.log(e.target.tagName)
+
+            console.log(e.target.classList.contains("selected"))
+            // var summ = Math.abs(dot1.textContent - dot2.textContent)+1
+            console.log(summ)
+        }
+
+
+
+
+
+
+
+    })
+</script>
