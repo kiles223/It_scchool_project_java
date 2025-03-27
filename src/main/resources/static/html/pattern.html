@@ -1,24 +1,27 @@
-<div class="col-md-12 col-lg-6 align-self-center d-flex flex-column gap-4" th:object="${house}">
+<div class="col-md-12 col-lg-6 align-self-center d-flex flex-column gap-4" xmlns="http://www.w3.org/1999/html">
+<!--    th:object="${house}"-->
     <div class="title">
-        <p th:text="*{houseName}" class="h1 heading1 mb-0"> Дом №14 "Звездный" </p>
+        <p th:text="${house.getHouseName()}" class="h1 heading1 mb-0"> Дом №14 "Звездный" </p>
         <div class="row price-display align-items-center">
             <p class="col-auto fs-3 d-inline mb-0">ЦЕНА ЗА СУТКИ:</p>
-            <p class="col-auto fs-3 d-inline mb-0" th:text="*{price}"></p>
+            <p class="col-auto fs-3 d-inline mb-0" th:text="${house.getPrice()}"></p>
             <p class="col-auto fs-3 d-inline p-0 mb-0">&#8381</p>
         </div>
     </div>
     <div>
         <p class="h3" >ОПИСАНИЕ</p>
-        <p class="h6 fw-normal mb-0" th:text="*{description}" ></p>
+        <p class="h6 fw-normal mb-0" th:text="*{house.getDescription()}" ></p>
     </div>
-    <div>
-        <p class="h3">ФОТОГРАФИИ</p>
-        <div class="row g-0 d-flex flex-row gap-4">
-            <div class="col apartment-photo-div" th:each="path: *{photosPaths}" style="max-width: 40%">
-                <img class="apartment-photo" th:src="@{${path.photoPath}}" alt="">
+    <th:block th:unless="${house.getPhotosPaths.isEmpty()}">
+        <div>
+            <p class="h3">ФОТОГРАФИИ</p>
+            <div class="row g-0 d-flex flex-row gap-4">
+                <div class="col apartment-photo-div" th:each="path: ${house.getPhotosPaths}" style="max-width: 40%">
+                    <img class="apartment-photo" th:src="@{${path.getPhotoPath()}}" alt="">
+                </div>
             </div>
         </div>
-    </div>
+    </th:block>
     <div>
         <p class="h3">ДАТЫ БРОНИРОВАНИЯ</p>
         <div class="daterangepicker-container d-flex flex-row gap-3">
@@ -38,51 +41,79 @@
 
                 </div>
             </div>
-            <div class="daterangepicker-2 col-6">
+            <div class="daterangepicker-2 col-6 d-flex gap-3 flex-column h3 align-items-center justify-content-center">
+                    <div class="row summary-days">
+                        <p class="fs-3 mb-0">ИТОГО ЗА <span id = "day-count">0</span> ДНЕЙ: </p>
+                    </div>
+                    <!--какая то логика-->
+                    <div class="price-display row">
+                        <p class="col-auto fs-3 mb-0" id="price">0</p>
+                        <p class="col-auto fs-3 p-0 mb-0">&#8381</p>
+                    </div>
+                    <a id="confirmBtn" class="book-button col-auto">
+                        ЗАБРОНИРОВАТЬ
+                    </a>
             </div>
         </div>
     </div>
-    <div class="row align-items-center h3 d-flex">
-        <p class="col-auto fs-3 d-inline mb-0">ИТОГО ЗА <span>#</span> ДНЕЙ</p>
-        <!--какая то логика-->
-        <p class="col-auto fs-3 d-inline mb-0">305798</p>
-        <p class="col-auto fs-3 d-inline p-0 mb-0">&#8381</p>
-        <a href="" class="book-button col-auto fs-5 align-self-end">
-            ЗАБРОНИРОВАТЬ
-        </a>
-    </div>
 </div>
 <div class="col-md-12 col-lg-6" >
-    <img class="img-fluid w-100 default-map align-self-center" th:src="@{${house.mapPath}}" alt="">
+    <img class="img-fluid w-100 default-map align-self-center" th:src="@{${house.getMapPath}}" alt="">
 </div>
-<script>
-    document.getElementById("datepickergrid").change
+<dialog id="dialogWindow" class="main-dialog col-md-10 col-lg-6 p-5 border-0 gx-3">
+    <div >
+        <p class="h2"> Вы успешно аредовали <span th:text="${house.getHouseName()}"></span></p>
+        <hr>
+        <p class="h3">Даты Аренды: с <span id="date1"></span> по <span id="date2"></span> </p>
+        <p class="h3">Количество дней: <span id="dayCount"></span></p>
+        <p class="h3">Итого: <span id = "FinalSum"></span></p>
+    </div>
+</dialog>
+<script th:inline="javascript">
+    var summ;
+    var summglobal
+    var endPrice
+    // document.getElementById("datepickergrid").change
     for (var i = 1; i <= 30; i++) {
+
         let s = document.createElement("button")
         s.textContent = i;
 
         document.getElementById("datepickergrid").appendChild(s)
     }
-    var dot1;
-    var dot2;
+    var dotmin;
+    var dotmax;
     var count = 0;
     var calendar = document.getElementById("datepickergrid")
     calendar.addEventListener("click", function (e){
         if (e.target.tagName == "BUTTON"){
             if (count == 0){
                 dotmin = e.target
+                dotmax = e.target
                 count+=1
                 dotmin.classList.add("selected")
+                summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+                document.getElementById("day-count").innerText = summ
+
             }
             else if(count==1){
-                dotmax = e.target
+                if (Math.max(e.target.textContent, dotmin.textContent) == e.target.textContent){
+                    dotmax = e.target
+                }
+                else{
+
+                    dotmax = dotmin
+                    dotmin = e.target
+                }
+                // dotmax = e.target
                 e.target.classList.add("selected")
                 console.log("min:"+dotmin.textContent+"max:"+dotmax.textContent)
                 count+=1
-                var summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+                summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
             }
             else{
                 summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+
                 var len1 = Math.abs(e.target.textContent - Math.min(dotmin.textContent, dotmax.textContent))
                 var len2 = Math.abs(e.target.textContent - Math.max(dotmin.textContent, dotmax.textContent))
                 if (len1<len2){
@@ -102,6 +133,8 @@
 
             }
             if (count == 2){
+                summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+                document.getElementById("day-count").innerText = summ
                 for (var i = 0; i <30; i++){
                     calendar.children[i].classList.remove("between-selected")
                     if (dotmin.textContent - 1 < i && i < dotmax.textContent - 1){
@@ -113,7 +146,12 @@
                 calendar.children[dotmin.textContent-1].classList.add(("selected-start"))
                 calendar.children[dotmax.textContent-1].classList.add(("selected-end"))
             }
-
+            var price = [[${house.getPrice()}]]     
+            console.log(price)
+            summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+            console.log(summ)
+            endPrice = price*summ
+            document.getElementById("price").textContent = endPrice
             console.log(e.target.textContent)
             console.log(e.target.tagName)
 
@@ -121,12 +159,29 @@
             // var summ = Math.abs(dot1.textContent - dot2.textContent)+1
             console.log(summ)
         }
-
-
-
-
-
+    })
+    houseId = [[${house.getId()}]]
+    document.getElementById("confirmBtn").addEventListener("click", function (){
+        $.ajax({
+            url: '/dates',
+            data: {
+                dateOne: ""+dotmin.textContent,
+                dateTwo: ""+dotmax.textContent,
+                houseId: ""+houseId
+            },
+            success: function(result){
+                console.log("please work")
+                summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+                console.log(summ)
+                document.getElementById("date1").innerText = dotmin.textContent + '.01'
+                document.getElementById("date2").innerText = dotmax.textContent + '.01'
+                document.getElementById("dayCount").innerText = summ
+                document.getElementById("FinalSum").innerText = endPrice
+                document.getElementById("dialogWindow").showModal()
+            }
+        });
 
 
     })
+
 </script>

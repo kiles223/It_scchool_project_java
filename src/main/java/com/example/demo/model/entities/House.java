@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.awt.*;
-import java.awt.print.Book;
 import java.util.List;
 
 @Getter
@@ -15,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="houses")
-public class House {
+public class House{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,5 +31,6 @@ public class House {
     private List<BookDates> bookDates;
     @Column(name = "map_path")
     private String mapPath;
+
 }
 

@@ -3,13 +3,11 @@ package com.example.demo.model.dto;
 import com.example.demo.model.entities.BookDates;
 import com.example.demo.model.entities.PhotoPaths;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
 
-@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,4 +19,32 @@ public class HouseDto {
     private List<PhotoPaths> photosPaths;
     private List<BookDates> bookDates;
     private String mapPath;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getHouseName() {
+        return houseName;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public List<PhotoPaths> getPhotosPaths() {
+        return photosPaths;
+    }
+
+    public List<BookDates> getBookDates() {
+        return bookDates;
+    }
+
+    public String getMapPath() {
+        return mapPath;
+    }
 }

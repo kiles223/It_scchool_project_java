@@ -1,15 +1,9 @@
 package com.example.demo.model.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "photos_paths")
 public class PhotoPaths {
@@ -20,4 +14,5 @@ public class PhotoPaths {
     private Long houseId;
     @Column(name = "photo_path")
     private String photoPath;
+
 }
