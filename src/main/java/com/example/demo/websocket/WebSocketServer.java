@@ -21,6 +21,7 @@ public class WebSocketServer extends TextWebSocketHandler {
 
     public static List<WebSocketSession> sessions = new ArrayList<>();
 
+
     public static List<WebSocketSession> getSessions() {
         return sessions;
     }
@@ -35,22 +36,6 @@ public class WebSocketServer extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         System.out.println("Соединение закрыто");
         sessions.remove(session);
-    }
-
-
-    //Обработка сообщений которые получает клиент
-    @OnMessage
-    public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-        System.out.println("Получено сообщение: " + message.getPayload());
-
-        for (WebSocketSession session1 : sessions) {
-            try {
-                session1.sendMessage(new TextMessage(message.getPayload()));
-            } catch (Exception e) {
-                System.out.println("Ошибка при отправке сообщения");
-
-            }
-        }
     }
 }
 

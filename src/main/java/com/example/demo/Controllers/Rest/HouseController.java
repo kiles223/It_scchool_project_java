@@ -1,7 +1,7 @@
-package com.example.demo.Controllers;
+package com.example.demo.Controllers.Rest;
 
 import com.example.demo.model.dto.HouseDto;
-import com.example.demo.services.HouseService;
+import com.example.demo.services.interfaces.HouseService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

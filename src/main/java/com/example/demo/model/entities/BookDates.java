@@ -1,9 +1,12 @@
 package com.example.demo.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="book_dates")
 public class BookDates {
@@ -13,15 +16,15 @@ public class BookDates {
     @Column(nullable = false, name = "house_id")
     private Long houseId;
     @Column(name = "booked_date_start")
-    private String bookedDateStart;
+    private String startDate;
     @Column(name = "booked_date_end")
-    private String bookedDateEnd;
+    private String endDate;
 
-    public String getBookedDateStart() {
-        return bookedDateStart;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public String getBookedDateEnd() {
-        return bookedDateEnd;
+    public String getEndDate() {
+        return endDate;
     }
 }

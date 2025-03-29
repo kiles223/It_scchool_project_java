@@ -1,19 +1,17 @@
-package com.example.demo.Controllers;
+package com.example.demo.Controllers.mainController;
 
 import com.example.demo.model.dto.HouseDto;
-import com.example.demo.model.entities.House;
-import com.example.demo.services.HouseService;
+import com.example.demo.services.interfaces.HouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class GreetingController {
+public class MainController {
     private final HouseService houseService;
     @Autowired
-    public GreetingController(HouseService houseService) {
+    public MainController(HouseService houseService) {
         this.houseService = houseService;
     }
 

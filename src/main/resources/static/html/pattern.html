@@ -163,12 +163,14 @@
     houseId = [[${house.getId()}]]
     document.getElementById("confirmBtn").addEventListener("click", function (){
         $.ajax({
-            url: '/dates',
-            data: {
-                dateOne: ""+dotmin.textContent,
-                dateTwo: ""+dotmax.textContent,
-                houseId: ""+houseId
-            },
+            url: '/api/bookDates',
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify( {
+                houseId: parseInt(houseId),
+                startDate: dotmin.textContent,
+                endDate: dotmax.textContent
+            }),
             success: function(result){
                 console.log("please work")
                 summ = Math.abs(dotmin.textContent - dotmax.textContent)+1

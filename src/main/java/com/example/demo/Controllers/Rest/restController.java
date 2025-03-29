@@ -1,10 +1,9 @@
-package com.example.demo.Controllers;
+package com.example.demo.Controllers.Rest;
 
 import com.example.demo.model.entities.BookDates;
 import com.example.demo.model.repositories.BookDatesRepository;
-import com.example.demo.services.HouseService;
 import com.example.demo.websocket.WebSocketServer;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,23 +20,11 @@ public class restController {
     }
     List<WebSocketSession> sessions = WebSocketServer.getSessions();
 
+    @SneakyThrows
     @GetMapping("/esp")
     public void esp(@RequestParam String uid) {
         for (WebSocketSession session1 : sessions) {
-            try {
-                session1.sendMessage(new TextMessage(uid));
-            } catch (Exception e) {
-                System.out.println("Ошибка при отправке сообщения");
-            }
+            session1.sendMessage(new TextMessage(uid));
         }
-    }
-
-    @GetMapping("/dates")
-    public void dates(@RequestParam String dateOne, @RequestParam String dateTwo, @RequestParam String houseId) {
-        BookDates newDate = new BookDates();
-        newDate.setBookedDateStart(dateOne);
-        newDate.setBookedDateEnd(dateTwo);
-        newDate.setHouseId(Long.parseLong(houseId));
-        bookDatesRepository.save(newDate);
     }
 }

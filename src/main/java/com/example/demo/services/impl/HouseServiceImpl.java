@@ -5,11 +5,9 @@ import com.example.demo.mapper.HouseMapper;
 import com.example.demo.model.dto.HouseDto;
 import com.example.demo.model.entities.House;
 import com.example.demo.model.repositories.HouseRepository;
-import com.example.demo.services.HouseService;
+import com.example.demo.services.interfaces.HouseService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor
