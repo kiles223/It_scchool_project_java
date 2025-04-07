@@ -178,6 +178,27 @@ html {
     background: #F56B3D !important;
     color: white !important;
 }
+.selected-gray{
+    background: #808080 !important;
+    color: white !important;
+}
+.selected-gray-start{
+    color: white;
+    background: #808080 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+.selected-gray-end{
+    color: white;
+    background: #808080 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+.between-selected-gray{
+    border-radius: 0 !important;
+    background: #808080 !important;
+    color: white !important;
+}
 .book-button{
     font-size: 1.25rem;
     font-weight: 600;

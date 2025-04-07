@@ -16,7 +16,7 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index() {
         return "index";
     }
 
@@ -26,6 +26,6 @@ public class MainController {
         Long houseId = Long.parseLong(uid);
         HouseDto houseDto = houseService.getHouseById(houseId);
         model.addAttribute("house", houseDto);
-        return "../static/html/pattern.html";
+        return "../static/html/testPattern.html";
     }
 }

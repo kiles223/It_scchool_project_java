@@ -1,0 +1,279 @@
+<div class="col-md-12 col-lg-6 align-self-center d-flex flex-column gap-4" xmlns="http://www.w3.org/1999/html">
+    <!--    th:object="${house}"-->
+    <div class="title">
+        <p th:text="${house.getHouseName()}" class="h1 heading1 mb-0"> Дом №14 "Звездный" </p>
+        <div class="row price-display align-items-center">
+            <p class="col-auto fs-3 d-inline mb-0">ЦЕНА ЗА СУТКИ:</p>
+            <p class="col-auto fs-3 d-inline mb-0" th:text="${house.getPrice()}"></p>
+            <p class="col-auto fs-3 d-inline p-0 mb-0">&#8381</p>
+        </div>
+    </div>
+    <div>
+        <p class="h3" >ОПИСАНИЕ</p>
+        <p class="h6 fw-normal mb-0" th:text="*{house.getDescription()}" ></p>
+    </div>
+    <th:block th:unless="${house.getPhotosPaths.isEmpty()}">
+        <div>
+            <p class="h3">ФОТОГРАФИИ</p>
+            <div class="row g-0 d-flex flex-row gap-4">
+                <div class="col apartment-photo-div" th:each="path: ${house.getPhotosPaths}" style="max-width: 40%">
+                    <img class="apartment-photo" th:src="@{${path.getPhotoPath()}}" alt="">
+                </div>
+            </div>
+        </div>
+    </th:block>
+    <div>
+        <p class="h3">ДАТЫ БРОНИРОВАНИЯ</p>
+        <div class="daterangepicker-container d-flex flex-row gap-3">
+            <div class="daterangepicker-1 col-6 bg-white shadow p-3">
+                <p class="h5 text-center"> January 2025</p>
+                <div class="days d-grid fw-bold fs-5 pb-2 text-center gap-2">
+                    <span>M</span>
+                    <span>T</span>
+                    <span>W</span>
+                    <span>T</span>
+                    <span>F</span>
+                    <span style="color: #FF3B30">S</span>
+                    <span style="color: #FF3B30">S</span>
+                </div>
+                <hr class="m-2">
+                <div class="dates d-grid" id="datepickergrid">
+
+                </div>
+            </div>
+            <div class="daterangepicker-2 col-6 d-flex gap-3 flex-column h3 align-items-center justify-content-center">
+                <div class="row summary-days">
+                    <p class="fs-3 mb-0">ИТОГО ЗА <span id = "day-count">0</span> ДНЕЙ: </p>
+                </div>
+                <!--какая то логика-->
+                <div class="price-display row">
+                    <p class="col-auto fs-3 mb-0" id="price">0</p>
+                    <p class="col-auto fs-3 p-0 mb-0">&#8381</p>
+                </div>
+                <a id="confirmBtn" class="book-button col-auto">
+                    ЗАБРОНИРОВАТЬ
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 col-lg-6" >
+    <img class="img-fluid w-100 default-map align-self-center" th:src="@{${house.getMapPath}}" alt="">
+</div>
+<dialog id="dialogWindow" class="main-dialog col-md-10 col-lg-6 p-5 border-0 gx-3">
+    <div >
+        <p class="h2"> Вы успешно аредовали <span th:text="${house.getHouseName()}"></span></p>
+        <hr>
+        <p class="h3">Даты Аренды: с <span id="date1"></span> по <span id="date2"></span> </p>
+        <p class="h3">Количество дней: <span id="dayCount"></span></p>
+        <p class="h3">Итого: <span id = "FinalSum"></span></p>
+    </div>
+</dialog>
+<script th:inline="javascript">
+    var calendar = document.getElementById("datepickergrid")
+    // Заполняем календарь
+    for (var i = 1; i <= 30; i++) {
+        let s = document.createElement("button")
+        s.textContent = i;
+        document.getElementById("datepickergrid").appendChild(s)
+    }
+    for (var j = 0; j < [[${house.getBookDates()}]].length; j++) {
+        bookdatesList = [[${house.getBookDates()}]][j].dates
+        minDate = bookdatesList[0]
+        maxDate = bookdatesList[1]
+        for (var i = 0; i < calendar.children.length; i++) {
+            if (minDate == maxDate && minDate-1 == i){
+                calendar.children[i].classList.add("selected-gray")
+                calendar.children[i].setAttribute("disabled", "")
+            }
+            else if (minDate-1 <= i && i<= maxDate-1) {
+                if (i == 6 || i % 7 == 6 || i == maxDate-1) {
+                    calendar.children[i].classList.add("selected-gray-end")
+                    calendar.children[i].setAttribute("disabled", "")
+                }
+                else if (i == 0 || i % 7 == 0 || i == minDate-1) {
+
+                    calendar.children[i].classList.add("selected-gray-start")
+                    calendar.children[i].setAttribute("disabled", "")
+                }
+                else if (i != minDate-1 && i != maxDate-1){
+                    calendar.children[i].classList.add("between-selected-gray")
+                    calendar.children[i].setAttribute("disabled", "")
+                }
+            }
+
+        }
+    }
+
+    function updateCalendar(){
+        for (var i = 0; i < calendar.children.length; i++) {
+            calendar.children[i].classList.remove("between-selected")
+            calendar.children[i].classList.remove("selected-start")
+            calendar.children[i].classList.remove("selected-end")
+            if (dotmin.textContent-1 <= i && i<= dotmax.textContent-1) {
+                if (i == 6 || i % 7 == 6 || i == dotmax.textContent-1) {
+                    calendar.children[i].classList.add("selected-end")
+                }
+                else if (i == 0 || i % 7 == 0 || i == dotmin.textContent-1) {
+
+                    calendar.children[i].classList.add("selected-start")
+                }
+                else if (i != dotmin.textContent-1 && i != dotmax.textContent-1){
+                    calendar.children[i].classList.add("between-selected")
+                }
+            }
+        }
+    }
+    function checkAvailableDates(){
+        for (var i = 0; i < calendar.children.length; i++) {
+            if (dotmin.textContent-1 <= i && i<= dotmax.textContent-1) {
+                if (calendar.children[i].classList.contains("selected-gray")){
+                    return false
+                }
+                else if (calendar.children[i].classList.contains("selected-gray-start")){
+                    return false
+                }
+            }
+
+        }
+        return true
+    }
+
+
+    var dotmin
+    var dotmax
+    var count = 0;
+
+    calendar.addEventListener("click", function (e){
+        if (e.target.tagName == "BUTTON"){
+            if (count == 0){
+                dotmin = e.target
+                dotmin.classList.add("selected")
+                document.getElementById("day-count").innerText = '1'
+                var summ = 1
+                count+=1
+            }
+            else if (count == 1){
+                if (e.target != dotmin){
+                    dotmin.classList.remove("selected")
+                    if (Math.max(e.target.textContent, dotmin.textContent) == e.target.textContent) {
+                        dotmax = e.target
+                    }
+                    else{
+                        dotmax = dotmin;
+                        dotmin = e.target;
+                    }
+                    if (checkAvailableDates() == true){
+                        console.log(checkAvailableDates())
+                        updateCalendar()
+                        dotmin.classList.add(("selected-start"))
+                        dotmax.classList.add(("selected-end"))
+                        count+=1
+                    }
+                    else{
+                        dotmax = null
+                        count = 0
+                        console.log("fdgdfgdfg")
+                    }
+
+
+                }
+                else{
+                    e.target.classList.remove("selected")
+                    count = 0
+                    summ = 0
+                    dotmin = null
+                }
+
+
+            }
+            else if (e.target == dotmin){
+                e.target.classList.remove("selected-start")
+                dotmin = dotmax
+                dotmin.setAttribute("class", "selected")
+                updateCalendar()
+                dotmin.classList.remove("selected-end")
+                dotmax = null
+                summ = 1
+                count = 1
+
+            }
+            else if (e.target == dotmax){
+                console.log("TEST2")
+                e.target.classList.remove("selected-end")
+                dotmax = dotmin
+                dotmax.setAttribute("class", "selected")
+                updateCalendar()
+                dotmin.classList.remove("selected-end")
+                dotmax = null
+                summ = 1
+                count = 1
+            }
+            else{
+                console.log(dotmax.textContent)
+                len1 = Math.abs(e.target.textContent - dotmin.textContent)
+                len2 = Math.abs(e.target.textContent - dotmax.textContent)
+                if (len1 >= len2){
+                    console.log(dotmax.textContent)
+                    dotmax.classList.remove("selected-end")
+                    dotmax = e.target;
+                    dotmax.classList.add(("selected-end"))
+                }
+                else{
+                    dotmin.classList.remove("selected-start")
+                    dotmin = e.target
+                    dotmin.classList.add(("selected-start"))
+                }
+                if (checkAvailableDates() == true){
+                    console.log(checkAvailableDates())
+                    updateCalendar()
+                }
+                else {
+                    dotmax = null
+                }
+            }
+            if (count>1 || dotmax != null){
+                summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+            }
+            else if (count == 0){
+                summ = 0
+            }
+            document.getElementById("day-count").innerText = summ
+            document.getElementById("price").innerText = summ* [[${house.getPrice()}]]
+
+
+        }
+
+    })
+
+    houseId = [[${house.getId()}]]
+    document.getElementById("confirmBtn").addEventListener("click", function (){
+        if (dotmax == null){
+            dotmax = dotmin
+        }
+        if (dotmin != null){
+            $.ajax({
+                url: '/api/bookDates',
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify( {
+                    houseId: parseInt(houseId),
+                    startDate: dotmin.textContent,
+                    endDate: dotmax.textContent
+                }),
+                success: function(result){
+                    summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
+                    document.getElementById("date1").innerText = dotmin.textContent + '.01'
+                    document.getElementById("date2").innerText = dotmax.textContent + '.01'
+                    document.getElementById("dayCount").innerText = summ
+                    document.getElementById("FinalSum").innerText = summ* [[${house.getPrice()}]]
+                    document.getElementById("dialogWindow").showModal()
+                },
+            });
+        }
+        else{
+            alert("Вы не выбрали даты брони")
+        }
+
+    })
+</script>

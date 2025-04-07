@@ -21,7 +21,7 @@ public class House{
     private String houseName;
     @Column(name = "price")
     private String price;
-    @Column(name = "description")
+    @Column(name = "description", length = 512)
     private String description;
     @OneToMany
     @JoinColumn(name = "house_id")

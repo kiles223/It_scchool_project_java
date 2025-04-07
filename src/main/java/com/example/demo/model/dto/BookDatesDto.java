@@ -12,6 +12,9 @@ public class BookDatesDto {
     private String startDate;
     private String endDate;
 
+
+    public String[] getDates() {return new String[]{startDate, endDate}; }
+
     public Long getId() {
         return id;
     }

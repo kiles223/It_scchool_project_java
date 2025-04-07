@@ -15,7 +15,6 @@ public class BookDatesController {
     // Добавление Даты бронирования дома REST API
     @PostMapping
     public ResponseEntity<BookDatesDto> createBookDates(@RequestBody BookDatesDto bookDatesDto) {
-        System.out.println("Это книга даты");
         BookDatesDto savedBookDates = bookDatesService.createBookDates(bookDatesDto);
         return new ResponseEntity<>(savedBookDates, HttpStatus.CREATED);
     }

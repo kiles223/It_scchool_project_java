@@ -75,10 +75,8 @@
     var endPrice
     // document.getElementById("datepickergrid").change
     for (var i = 1; i <= 30; i++) {
-
         let s = document.createElement("button")
         s.textContent = i;
-
         document.getElementById("datepickergrid").appendChild(s)
     }
     var dotmin;
@@ -116,7 +114,7 @@
 
                 var len1 = Math.abs(e.target.textContent - Math.min(dotmin.textContent, dotmax.textContent))
                 var len2 = Math.abs(e.target.textContent - Math.max(dotmin.textContent, dotmax.textContent))
-                if (len1<len2){
+                if (len1<len2 && dotmin.textContent != dotmax.textContent){
                     dotmin.classList.remove("selected-start")
                     dotmin.classList.remove("selected")
                     dotmin = e.target
