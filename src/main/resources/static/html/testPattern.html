@@ -62,7 +62,7 @@
 </div>
 <dialog id="dialogWindow" class="main-dialog col-md-10 col-lg-6 p-5 border-0 gx-3">
     <div >
-        <p class="h2"> Вы успешно аредовали <span th:text="${house.getHouseName()}"></span></p>
+        <p class="h2"> Вы успешно оставили заявку на бронирование! <span th:text="${house.getHouseName()}"></span></p>
         <hr>
         <p class="h3">Даты Аренды: с <span id="date1"></span> по <span id="date2"></span> </p>
         <p class="h3">Количество дней: <span id="dayCount"></span></p>
@@ -140,8 +140,8 @@
     }
 
 
-    var dotmin
-    var dotmax
+    var dotmin = null
+    var dotmax = null
     var count = 0;
 
     calendar.addEventListener("click", function (e){
@@ -252,6 +252,10 @@
             dotmax = dotmin
         }
         if (dotmin != null){
+
+
+
+
             $.ajax({
                 url: '/api/bookDates',
                 method: "POST",
@@ -262,6 +266,24 @@
                     endDate: dotmax.textContent
                 }),
                 success: function(result){
+                    adminlist = [5391368417, 917996768]
+                    adminlist.forEach(function(el){
+                        $.ajax({
+                            url: 'https://api.telegram.org/bot8012773194:AAFVPzw67PLNlwauxTQ2_05qAz04n_cf4zc/sendMessage',
+                            data: {
+                                chat_id: el,
+                                text: 'Была совершена бронь объекта: '+ [[${house.getHouseName()}]] +'\nНа даты: '+ dotmin.textContent +'.01 - '+ dotmax.textContent +'.01\nНомер брони: '+([[${lastId}]]+1),
+                                reply_markup: JSON.stringify({
+                                    "inline_keyboard": [
+                                        [
+                                            {"text":"Одобрить","callback_data":"ConfirmBookDates"},
+                                            {"text":"Отклонить","callback_data":"DenyBookDates"}
+                                        ]
+                                    ]
+                                })
+                            }
+                        })
+                    })
                     summ = Math.abs(dotmin.textContent - dotmax.textContent)+1
                     document.getElementById("date1").innerText = dotmin.textContent + '.01'
                     document.getElementById("date2").innerText = dotmax.textContent + '.01'

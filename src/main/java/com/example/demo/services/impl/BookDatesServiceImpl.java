@@ -7,14 +7,27 @@ import com.example.demo.model.entities.BookDates;
 import com.example.demo.model.repositories.BookDatesRepository;
 import com.example.demo.services.interfaces.BookDatesService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
 @AllArgsConstructor
 public class BookDatesServiceImpl implements BookDatesService {
+    @Autowired
     private BookDatesRepository bookDatesRepository;
+    @Override
+    public List<BookDatesDto> getAllBookDates() {
+        List<BookDates> bookDates = bookDatesRepository.findAll();
+        List<BookDatesDto> bookDatesDtos = new ArrayList<>();
+        for (BookDates bookDateDto : bookDates) {
+            bookDatesDtos.add((BookDatesMapper.mapToBookDatesDto(bookDateDto)));
+        }
+        return bookDatesDtos;
+    }
     @Override
     public BookDatesDto createBookDates(BookDatesDto bookDatesDto) {
         BookDates bookDates = BookDatesMapper.mapToBookDates(bookDatesDto);

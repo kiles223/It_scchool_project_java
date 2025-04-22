@@ -44,6 +44,14 @@ public class HouseDto {
         return bookDates;
     }
 
+    public Long getBookDatesId () {
+        try {
+            return bookDates.get(-1).getId();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public String getMapPath() {
         return mapPath;
     }

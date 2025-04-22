@@ -20,7 +20,6 @@ public class BookDates {
     @Column(name = "booked_date_end")
     private String endDate;
 
-
     public String[] getDates() {return new String[]{startDate, endDate}; }
     public String getStartDate() {
         return startDate;
